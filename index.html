@@ -26,7 +26,7 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
 <!-- COLORS -->
-<link rel="stylesheet" id="color" href="css/colors/sliver.css">
+<link rel="stylesheet" id="color" href="css/default.css">
 
 <!-- JavaScripts -->
 <script src="js/vendors/modernizr.js"></script>
@@ -75,7 +75,7 @@
         
         <!-- Nav -->
         <nav>
-          <ul id="ownmenu" class="ownmenu light-nav">
+          <ul id="ownmenu" class="ownmenu">
             <li class="scroll active"><a href="#hme">home </a></li>
             <li class="scroll"><a href="#ser">services </a></li>
             <li class="scroll"><a href="#wrk">Portfolio </a></li>
@@ -91,29 +91,20 @@
   </header>
   <!-- End Header --> 
   
- <!-- HOME AGENCY -->
-  <section id="hme" class="big-background home-agency w-video-bg full-screen"> 
-    
-    <!-- Video Background --> 
-    <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=bLaBOIct3GA',containment:'body',autoPlay:true, mute:true, startAt:50, opacity:1}"></a>
-    <!-- Text --> 
+  <!-- HOME AGENCY -->
+  <div id="hme" class="home-agency full-screen" data-stellar-background-ratio="0.8">
     <div class="position-center-center">
       <div class="container">
         <div class="ag-text">
-           <!-- <h3>YouTube Background Video</h3> -->
-          <h1 class="text-color-primary">Merio - The Smart Agency</h1>
+          <h1>Merio - The Smart Agency </h1>
+          <h3>Creative One Page Template</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesen rhoncus pulvinar. consectetur adipiscing elit. </p>
           <div class="scroll"> <a href="#content" class="btn margin-top-50">DISCOVER NOW</a> </div>
         </div>
       </div>
     </div>
-
-    
-    
-     </section>
-
-
-
+  </div>
+  
   <!-- Content -->
   <div id="content"> 
     
@@ -703,6 +694,7 @@
       </div>
     </section>
 
+
     <!-- Clients img -->
     <section class="light-gry-bg clients-img padding-bottom-60">
       <div class="container">
@@ -928,7 +920,40 @@
   <!-- GO TO TOP End --> 
 </div>
 <!-- End Page Wrapper --> 
-
+<!--Style Switcher===========================================-->
+<div class="color-switcher" id="choose_color"> <a href="#." class="picker_close"><i class="ion-gear-a" ></i></a>
+  <div class="theme-colours">
+    <p class="font-crimson font-italic">Choose Colour style</p>
+    <ul>
+      <li><a href="#." class="blue" id="blue"></a></li>
+      <li><a href="#." class="green" id="green"></a></li>
+      <li><a href="#." class="red" id="red"></a></li>
+      <li><a href="#." class="yellow" id="yellow"></a></li>
+      <li><a href="#." class="brown" id="brown"></a></li>
+      <li><a href="#." class="cyan" id="cyan"></a></li>
+      <li><a href="#." class="purple" id="purple"></a></li>
+      <li><a href="#." class="sky-blue" id="sky-blue"></a></li>
+      <li><a href="#." class="gray" id="gray"></a></li>
+      <li><a href="#." class="peter-river" id="peter-river"></a></li>
+      <li><a href="#." class="nephritis" id="nephritis"></a></li>
+      <li><a href="#." class="amethyst" id="amethyst"></a></li>
+      <li><a href="#." class="wet-asphalt" id="wet-asphalt"></a></li>
+      <li><a href="#." class="night-shade" id="night-shade"></a></li>
+      <li><a href="#." class="sun-flowers" id="sun-flowers"></a></li>
+      <li><a href="#." class="orange" id="orange"></a></li>
+      <li><a href="#." class="carrot" id="carrot"></a></li>
+      <li><a href="#." class="alizarin" id="alizarin"></a></li>
+      <li><a href="#." class="sliver" id="sliver"></a></li>
+      <li><a href="#." class="green-sea" id="green-sea"></a></li>
+    </ul>
+    <div class="layouts no-padding">
+      <p class="font-italic margin-top-20">Layout Mode</p>
+      <a href="#." id="boxed">BOX LAYOUT</a> <a href="#." id="wide">WIDE LAYOUT</a> </div>
+    <div class="layouts no-padding">
+      <p class=" font-italic margin-top-20">Dark/Light Version</p>
+      <a href="#." id="dark-night">DARK VERSION</a> <a href="#." id="light-day">LIGHT VERSION</a> </div>
+  </div>
+</div>
 <!-- JavaScripts --> 
 <script src="js/vendors/jquery/jquery.min.js"></script> 
 <script src="js/vendors/wow.min.js"></script> 
