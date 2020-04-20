@@ -1,130 +1,194 @@
-jQuery(document).ready(function ($) {
-
-  // Header fixed and Back to top button
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-      $('.back-to-top').fadeIn('slow');
-      $('#header').addClass('header-fixed');
-    } else {
-      $('.back-to-top').fadeOut('slow');
-      $('#header').removeClass('header-fixed');
-    }
-  });
-  $('.back-to-top').click(function () {
-    $('html, body').animate({
-      scrollTop: 0
-    }, 1500, 'easeInOutExpo');
-    return false;
-  });
-
-  // Initiate the wowjs
-  new WOW().init();
-
-  // Initiate superfish on nav menu
-  $('.nav-menu').superfish({
-    animation: {
-      opacity: 'show'
-    },
-    speed: 400
-  });
-
-  // Mobile Navigation
-  if ($('#nav-menu-container').length) {
-    var $mobile_nav = $('#nav-menu-container').clone().prop({
-      id: 'mobile-nav'
-    });
-    $mobile_nav.find('> ul').attr({
-      'class': '',
-      'id': ''
-    });
-    $('body').append($mobile_nav);
-    $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>');
-    $('body').append('<div id="mobile-body-overly"></div>');
-    $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>');
-
-    $(document).on('click', '.menu-has-children i', function (e) {
-      $(this).next().toggleClass('menu-item-active');
-      $(this).nextAll('ul').eq(0).slideToggle();
-      $(this).toggleClass("fa-chevron-up fa-chevron-down");
-    });
-
-    $(document).on('click', '#mobile-nav-toggle', function (e) {
-      $('body').toggleClass('mobile-nav-active');
-      $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-      $('#mobile-body-overly').toggle();
-    });
-
-    $(document).click(function (e) {
-      var container = $("#mobile-nav, #mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-      }
-    });
-  } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
-    $("#mobile-nav, #mobile-nav-toggle").hide();
-  }
-
-  // Smoth scroll on page hash links
-  $('a[href*="#"]:not([href="#"])').on('click', function () {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-
-      var target = $(this.hash);
-      if (target.length) {
-        var top_space = 0;
-
-        if ($('#header').length) {
-          top_space = $('#header').outerHeight();
-
-          if (!$('#header').hasClass('header-fixed')) {
-            top_space = top_space - 20;
-          }
-        }
-
-        $('html, body').animate({
-          scrollTop: target.offset().top - top_space
-        }, 1500, 'easeInOutExpo');
-
-        if ($(this).parents('.nav-menu').length) {
-          $('.nav-menu .menu-active').removeClass('menu-active');
-          $(this).closest('li').addClass('menu-active');
-        }
-
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-        return false;
-      }
-    }
-  });
-
-  // Porfolio filter
-  $("#portfolio-flters li").click(function () {
-    $("#portfolio-flters li").removeClass('filter-active');
-    $(this).addClass('filter-active');
-
-    var selectedFilter = $(this).data("filter");
-    $("#portfolio-wrapper").fadeTo(100, 0);
-
-    $(".portfolio-item").fadeOut().css('transform', 'scale(0)');
-
-    setTimeout(function () {
-      $(selectedFilter).fadeIn(100).css('transform', 'scale(1)');
-      $("#portfolio-wrapper").fadeTo(300, 1);
-    }, 300);
-  });
-
-  // jQuery counterUp
-  $('[data-toggle="counter-up"]').counterUp({
+jQuery( document ).ready(function( $ ) {
+"use strict"
+/*-----------------------------------------------------------------------------------*/
+/* 	LOADER
+/*-----------------------------------------------------------------------------------*/
+$("#loader").delay(500).fadeOut("slow");
+/*-----------------------------------------------------------------------------------*/
+/*		STICKY NAVIGATION
+/*-----------------------------------------------------------------------------------*/
+$(".sticky").sticky({topSpacing:0});
+/*-----------------------------------------------------------------------------------*/
+/*  FULL SCREEN
+/*-----------------------------------------------------------------------------------*/
+$('.full-screen').superslides({});
+/*-----------------------------------------------------------------------------------
+    Animated progress bars
+/*-----------------------------------------------------------------------------------*/
+$('.progress-bars').waypoint(function() {
+  $('.progress').each(function(){
+    $(this).find('.progress-bar').animate({
+      width:$(this).attr('data-percent')
+     },0);
+});},
+	{ 
+	offset: '100%',
+    triggerOnce: true 
+});
+/*-----------------------------------------------------------------------------------*/
+/*    Parallax
+/*-----------------------------------------------------------------------------------*/
+jQuery.stellar({
+   horizontalScrolling: false,
+   scrollProperty: 'scroll',
+   positionProperty: 'position',
+});
+/*-----------------------------------------------------------------------------------*/
+/* 	SLIDER REVOLUTION
+/*-----------------------------------------------------------------------------------*/
+jQuery('.tp-banner').show().revolution({
+	dottedOverlay:"none",
+	delay:10000,
+	startwidth:1170,
+	startheight:700,
+	navigationType:"bullet",
+	navigationArrows:"solo",
+	navigationStyle:"preview4",
+	parallax:"mouse",
+	parallaxBgFreeze:"on",
+	parallaxLevels:[7,4,3,2,5,4,3,2,1,0],												
+	keyboardNavigation:"on",						
+	shadow:0,
+	fullWidth:"on",
+	fullScreen:"on",
+	shuffle:"off",						
+	autoHeight:"off",						
+	forceFullWidth:"off",	
+	fullScreenOffsetContainer:""	
+});
+/*-----------------------------------------------------------------------------------*/
+/* 	COUNTER
+/*-----------------------------------------------------------------------------------*/
+$('.counter').counterUp({
     delay: 10,
-    time: 1000
-  });
+    time: 300
+});
+/*-----------------------------------------------------------------------------------*/
+/* 	CASE SLIDER
+/*-----------------------------------------------------------------------------------*/
+$(".team-slide").owlCarousel({ 
+    items : 3,
+	autoplay:true,
+	loop:true,
+	margin: 30,
+	autoplayTimeout:5000,
+	autoplayHoverPause:true,
+	navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	lazyLoad:true,
+	nav: true,
+	responsive:{
+        0:{
+            items:1,
+        },
+        800:{
+            items:2,
+        },
+		1000:{
+            items:3,
+        },
+    },
+	animateOut: 'fadeOut'
+		
+});
 
-  // custom code
-
+/*-----------------------------------------------------------------------------------*/
+/* 	CASE SLIDER
+/*-----------------------------------------------------------------------------------*/
+$(".clint-sli").owlCarousel({ 
+    items : 5,
+	autoplay:true,
+	loop:true,
+	margin: 30,
+	autoplayTimeout:5000,
+	autoplayHoverPause:true,
+	navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	lazyLoad:true,
+	nav: true,
+	responsive:{
+        0:{
+            items:1,
+        },
+        200:{
+            items:2,
+        },
+		800:{
+            items:3,
+        },
+		1000:{
+            items:5,
+        },
+    },
+	animateOut: 'fadeOut'
+		
+});
+/*-----------------------------------------------------------------------------------*/
+/* 	TESTIMONIAL SLIDER
+/*-----------------------------------------------------------------------------------*/
+$("#testi-slide").owlCarousel({ 
+    items : 1,
+	autoplay:true,
+	loop:true,
+	autoplayTimeout:5000,
+	autoplayHoverPause:true,
+	singleItem	: true,
+    navigation : false,
+	navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	pagination : true,
+	animateOut: 'fadeOut'	
+});
+/*-----------------------------------------------------------------------------------
+    TESTNMONIALS STYLE 1
+/*-----------------------------------------------------------------------------------*/
+$('.home-slide').flexslider({
+	mode: 'fade',
+	auto: true
+});
+/*-----------------------------------------------------------------------------------*/
+/* 	ANIMATION
+/*-----------------------------------------------------------------------------------*/
+var wow = new WOW({
+    boxClass:     'animate',      // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset:       100,          // distance to the element when triggering the animation (default is 0)
+    mobile:       false        // trigger animations on mobile devices (true is default)
+});
+wow.init();
+/*-----------------------------------------------------------------------------------*/
+/*	CUBE PORTFOLIO
+/*-----------------------------------------------------------------------------------*/
+$('#js-grid-awesome-work').cubeportfolio({
+    filters: '#js-filters-awesome-work',
+    loadMore: '#js-loadMore-awesome-work',
+    loadMoreAction: 'click',
+    layoutMode: 'grid',
+    defaultFilter: '*',
+    animationType: 'quicksand',
+    gapHorizontal: 0,
+    gapVertical: 0,
+    gridAdjustment: '',
+    caption: 'zoom',
+    displayType: 'lazyLoading',
+    displayTypeSpeed: 400,
+// singlePage popup
+    singlePageDelegate: '.cbp-singlePage',
+    singlePageDeeplinking: true,
+    singlePageStickyNavigation: true,
+    singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
+    singlePageCallback: function(url, element) {
+// to update singlePage content use the following method: this.updateSinglePage(yourContent)
+    var t = this;
+       $.ajax({
+         url: url,
+         type: 'GET',
+         dataType: 'html',
+         timeout: 10000
+    })
+.done(function(result) {
+         t.updateSinglePage(result);
+         })
+.fail(function() {
+          t.updateSinglePage('AJAX Error! Please refresh the page!');
+     });
+    },
+});
 });
