@@ -1413,7 +1413,7 @@ a.big-border:hover {
 }
 .about .about-us-con h3 {
 	margin: 0px;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 }
 .about .about-us-con h6 {
 	font-weight: normal;
@@ -1451,7 +1451,7 @@ a.big-border:hover {
 	background-color: #fffbf5;
 }
 .about .studio-bg {
-	background: url(../images/me.jpg) center center no-repeat;
+	background: url(../images/faqs-img.jpg) center center no-repeat;
 	background-size: cover;
 }
 .main-half-layout.half_right_layout {
